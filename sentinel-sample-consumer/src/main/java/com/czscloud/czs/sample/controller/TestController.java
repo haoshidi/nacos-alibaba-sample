@@ -23,4 +23,8 @@ public class TestController {
     public String sentinelTest(){
         return "TestController#sentinelTest "+RandomUtils.nextInt(0,1000);
     }
+    @RequestMapping("/sentinelTestB")
+    public String sentinelTestB(){
+        return "TestController#sentinelTestB "+RandomUtils.nextInt(0,1000);
+    }
 }

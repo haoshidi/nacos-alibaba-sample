@@ -1,0 +1,21 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    sentinel:
+      transport:
+        port: 8719  #启动HTTP SERVER，并且该服务将与Sentinel仪表板进行交互，使Sentinel仪表板可以控制应用，如果被占用，则从8719依次+1扫描
+        dashboard: 127.0.0.1:8080 #指定仪表盘地址
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848 #nacos服务注册、发现地址
+      config:
+        server-addr: 127.0.0.1:8848 #nacos配置中心地址
+        file-extension: yml  #指定配置内容的数据格式
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*' #公开所有端点

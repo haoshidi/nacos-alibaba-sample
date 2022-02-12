@@ -1,0 +1,61 @@
+server:
+  port: 8083
+spring:
+  application:
+    name: @artifactId@
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: user_route
+#          uri: http://localhost:8081
+#          order: 1
+#          predicates:
+#            - Path=/user/**
+#        - id: shop_route
+#          uri: http://localhost:8082
+#          order: 1
+#          predicates:
+#            - Path=/shop/**
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        config:
+          server-addr: 127.0.0.1:8848 #nacos配置中心地址
+          file-extension: yml  #指定配置内容的数据格式
+    gateway:
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: '*'
+            allowedMethods: '*'
+            allowedHeaders: '*'
+      httpclient:
+        connect-timeout: 5000
+        response-timeout: 4s
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: user_route #唯一值，默认UUID
+          uri: lb://user-server-sample
+          order: 1 #路由优先级越小优先级越高，默认为0
+          predicates:
+            - Path=/user/**
+        - id: user_group #唯一值，默认UUID
+          uri: http://localhost:8083
+          order: 1 #路由优先级越小优先级越高，默认为0
+          predicates:
+            - Path=/user/group/**
+#            - Method=POST
+#            - User=0, 1000 # 自定义路由断言工厂，只允许查询0-1000之间的用户
+#          filters:
+            #- StripPrefix=1 #如果发出的请求是/user/findById,那么/user将被截断，实际到具体服务发出的请求是http://localhost:80803/findById
+            #- RedirectTo=302, https://www.baidu.com
+#            - User=0, 1000 # 自定义局部过滤器，只允许查询0-1000之间的用户
+          #断言的优先级比过滤器的优先级高
+        - id: shop_route
+          uri: lb://shop-server-sample
+          order: 1
+          predicates:
+            - Path=/shop/**
