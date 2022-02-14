@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(value ="${distribution.name}",fallback = DistributionServiceFallback.class)
+@FeignClient(value = "${distribution.name}" , fallback = DistributionServiceFallback.class)
 public interface DistributionService {
-    @RequestMapping(value = "/distribution",method = RequestMethod.GET)
+
+    @RequestMapping(value = "/distribution")
     Integer distribution(@RequestParam("orderId") String orderId);
+
 }

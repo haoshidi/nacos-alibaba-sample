@@ -11,8 +11,10 @@ import javax.annotation.Resource;
 public class OrderController {
     @Resource
     private OrderService orderService;
+
     @RequestMapping("/createOrder")
     public Integer createOrder(@RequestParam("id") Integer id){
         return orderService.createOrder(id);
     }
+
 }
