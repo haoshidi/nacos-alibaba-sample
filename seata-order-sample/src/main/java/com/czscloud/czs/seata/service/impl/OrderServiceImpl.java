@@ -2,6 +2,7 @@ package com.czscloud.czs.seata.service.impl;
 
 import com.czscloud.czs.seata.service.DistributionService;
 import com.czscloud.czs.seata.service.OrderService;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,7 +24,8 @@ public class OrderServiceImpl implements OrderService {
         put(2,"菜品2");
         put(3,"菜品3");
     }};
-    @Transactional
+    @GlobalTransactional //全局事务注解
+    @Transactional //spring 事务注解
     @Override
     public Integer createOrder(Integer id) {
         System.out.println("id："+id);

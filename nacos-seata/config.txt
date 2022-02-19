@@ -1,4 +1,4 @@
-service.vgroupMapping.my_test_txt_group=default
+service.vgroupMapping.my_test_tx_group=default
 store.mode=db
 store.db.datasource=druid
 store.db.dbType=mysql

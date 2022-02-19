@@ -1,0 +1,31 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: @artifactId@
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          name-server: 127.0.0.1:9876
+        bindings:
+          input1:
+            consumer:
+              tags: test #指定input1消费者有tags为test的消息，如果多个用||隔开，如test||test2,表示指定input1消费带有tags为test或test2的消息
+      bindings:
+        input1:
+          destination: test-topic #訂閱主題
+          content-type: application/json
+          group: test-group #分组
+        input2:
+          destination: transaction-topic #訂閱主題
+          content-type: application/json
+          group: transaction-group #分组
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  endpoint:
+    health:
+      show-details: always #显示服务信息详情
