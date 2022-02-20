@@ -1,4 +1,4 @@
-create databases seata;
+create database seata;
 use seata;
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
@@ -83,8 +83,8 @@ CREATE TABLE `undo_log`  (
 SET FOREIGN_KEY_CHECKS = 1;
 
 -- 添加jwt测试库
-drop databases IF EXISTS jwt_demo;
-create DATABASES jwt_demo;
+drop database IF EXISTS jwt_demo;
+create DATABASE jwt_demo;
 use jwt_demo;
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user`  (
