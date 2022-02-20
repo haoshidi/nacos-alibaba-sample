@@ -81,3 +81,22 @@ CREATE TABLE `undo_log`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 SET FOREIGN_KEY_CHECKS = 1;
+
+-- 添加jwt测试库
+drop databases IF EXISTS jwt_demo;
+create DATABASES jwt_demo;
+use jwt_demo;
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE `user`  (
+                         `id` int NOT NULL AUTO_INCREMENT,
+                         `loginid` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+                         `password` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NULL DEFAULT NULL,
+                         PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user
+-- ----------------------------
+INSERT INTO `user` VALUES (1, 'admin', '123456');
+
+SET FOREIGN_KEY_CHECKS = 1;
