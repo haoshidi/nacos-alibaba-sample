@@ -59,7 +59,7 @@ spring:
           order: 1
           predicates:
             - Path=/shop/**
-        - id: jwt-route
-            uri: lb://jwt-sample
-            predicates:
-              - Path=/jwt-sample/**
+        - id: jwt_route
+          uri: lb://jwt-sample
+          predicates:
+            - Path=/jwt-sample/**

@@ -19,6 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 @Slf4j
 @RestController
+@RequestMapping("/jwt-sample")
 public class ClientController {
     @Autowired
     JwtUtils jwtUtils;
